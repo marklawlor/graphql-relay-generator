@@ -1,0 +1,50 @@
+{
+  "name": "graphql-relay-generator",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.js",
+  "license": "MIT",
+  "dependencies": {
+    "graphql": "^0.13.2",
+    "graphql-relay": "^0.5.5"
+  },
+  "devDependencies": {
+    "@types/graphql": "^0.13.1",
+    "@types/graphql-relay": "^0.4.5",
+    "@types/jest": "^22.2.3",
+    "jest": "^23.0.1",
+    "prettier": "^1.13.2",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^22.4.6",
+    "typescript": "^2.8.3"
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "test": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "modulePathIgnorePatterns": [
+      "packages/.*/dist"
+    ],
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/examples/",
+      "/swapi"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "verbose": true
+  }
+}

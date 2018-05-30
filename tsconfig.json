@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es6", "es7", "dom", "esnext"],
+    "declaration": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "rootDir": "src",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true
+  },
+  "exclude": ["__tests__/**/*"]
+}
