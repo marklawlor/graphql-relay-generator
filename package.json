@@ -2,8 +2,11 @@
   "name": "graphql-relay-generator",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "typings": "dist/index.d.js",
+  "types": "dist/index.d.js",
   "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
   "dependencies": {
     "graphql": "^0.13.2",
     "graphql-relay": "^0.5.5"
