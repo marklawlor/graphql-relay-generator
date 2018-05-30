@@ -29,7 +29,7 @@ const connectionFactory = <TProp extends string, TFields>(
 
   const connectionResolver = resolver || defaultResolver(prop);
 
-  const connectionType = getConnectionType({ prop, nodeType });
+  const connectionType = getConnectionType({ name, prop, nodeType });
 
   return {
     args: {
