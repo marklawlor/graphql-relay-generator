@@ -12,7 +12,7 @@ interface Connections {
   StarshipConnection: InferType<typeof StarshipConnection>;
 }
 
-const Film = nodeFactory<Fields, Connections>({
+export default nodeFactory<Fields, Connections>({
   name: "Film",
   fields: {
     title: {
