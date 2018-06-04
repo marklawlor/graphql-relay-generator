@@ -83,8 +83,8 @@ interface FilmConnections {
 }
 
 interface StarshipFields {
-	name: string;
-	starshipClass: string
+  name: string;
+  starshipClass: string
 }
 
 const GraphQLFilmObject = node<FilmFields, FilmConnections>({
