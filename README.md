@@ -10,7 +10,7 @@ Inspired by the helper functions used in [GraphQL SWAPI](https://github.com/grap
 
 Almost all your types will be Nodes. The `node` factory function wraps GraphQLObjectType and provides a new option for connections.
 
-```
+```typescript
 node<TFields, TConnections>(config: NodeConfig) => Node
 
 type NodeConfig = {
@@ -22,6 +22,25 @@ type NodeConfig = {
   connections?: () => GraphQLFieldConfig
 }
 
+// Example
+const GraphQLFilmObject = node({
+  name: "Film",
+  fields: {
+    title: {
+      type: GraphQLString
+    },
+    episodeID: {
+      type: GraphQLInt
+    },
+    releaseDate: {
+      type: GraphQLString
+    }
+  },
+  connections: () => ({
+    StarshipConnection: FilmStarshipConnectionObject
+  })
+});
+
 ```
 
 Nodes === GraphQLObjectTypes, just with a little bit of extra Typescript goodness
@@ -31,7 +50,7 @@ Nodes === GraphQLObjectTypes, just with a little bit of extra Typescript goodnes
 
 Connections connect your nodes to their edges
 
-```
+```typescript
 nodeConnection<TFields, TEdgeProp = void>(config: NodeConfig) => GraphQLObjectType
 
 type NodeConfig = {
@@ -79,7 +98,7 @@ interface FilmFields {
 }
 
 interface FilmConnections {
-  StarshipConnection: InferType<typeof StarshipConnection>;
+  StarshipConnection: InferType<typeof FilmStarshipConnectionObject>;
 }
 
 interface StarshipFields {
