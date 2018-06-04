@@ -121,6 +121,7 @@ type Film = InferType<typeof GraphQLFilmObject> // No compile step needed!
 type Film {
 	title: string
 	episodeID: number
+  
   releaseDate: string
 
 	StarshipConnection: {
@@ -128,11 +129,13 @@ type Film {
 		edges: {
 			node: { // node: StarshipFields
 				name: string
+        
         starshipClass: string
 			}
 		}
 		starships: [{ // starships: StarshipFields[] 
 			name: string
+      
       starshipClass: string
 		}]
 	}
