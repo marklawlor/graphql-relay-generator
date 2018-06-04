@@ -71,7 +71,7 @@ graphql-relay-schema-builder provides strict typing of all GraphQL objects and c
 
 This allows you to build dynamic interfaces to use within resolvers, mutations and even in your frontend code
 
-```
+```typescript
 interface FilmFields {
   title: string;
   episodeID: number
@@ -83,7 +83,7 @@ interface FilmConnections {
 }
 
 interface StarshipFields {
-	name: string;
+  name: string;
   starshipClass: string
 }
 
@@ -119,23 +119,23 @@ type Film = InferType<typeof GraphQLFilmObject> // No compile step needed!
 // Type Film will now give you these type definitions:
 
 type Film {
-	title: string
-	episodeID: number
+  title: string
+  episodeID: number
   releaseDate: string
 
-	StarshipConnection: {
-		totalCount: number
-		edges: {
-			node: { // node: StarshipFields
-				name: string
+  StarshipConnection: {
+    totalCount: number
+    edges: {
+      node: { // node: StarshipFields
+        name: string
         starshipClass: string
-			}
-		}
-		starships: [{ // starships: StarshipFields[] 
-			name: string
+      }
+    }
+    starships: [{ // starships: StarshipFields[]
+      name: string,
       starshipClass: string
-		}]
-	}
+    }]
+  }
 }
 ```
 
