@@ -1,4 +1,4 @@
-# graphql-relay-schema-builder
+# graphql-relay-generator
 
 A set of helper functions to build a type-safe GraphQL Schema
 
