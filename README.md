@@ -119,23 +119,23 @@ type Film = InferType<typeof GraphQLFilmObject> // No compile step needed!
 // Type Film will now give you these type definitions:
 
 type Film {
-	title: string
-	episodeID: number
-	releaseDate: string
+  title: string
+  episodeID: number
+  releaseDate: string
 
-	StarshipConnection: {
-		totalCount: number
-		edges: {
-			node: { // node: StarshipFields
-				name: string
-				starshipClass: string
-			}
-		}
-		starships: [{ // starships: StarshipFields[]
-			name: string,
-			starshipClass: string
+  StarshipConnection: {
+    totalCount: number
+    edges: {
+      node: { // node: StarshipFields
+        name: string
+        starshipClass: string
+      }
+    }
+    starships: [{ // starships: StarshipFields[]
+      name: string,
+      starshipClass: string
     }]
-	}
+  }
 }
 ```
 
