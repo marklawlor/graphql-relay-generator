@@ -1,6 +1,6 @@
 import { GraphQLString } from "graphql";
 
-import { nodeFactory } from "../../../src";
+import { node } from "../../../src";
 
 interface Fields {
   name: string;
@@ -8,7 +8,7 @@ interface Fields {
 
 interface Connections {}
 
-export default nodeFactory<Fields, Connections>({
+export default node<Fields, Connections>({
   name: "Starship",
   fields: {
     name: {

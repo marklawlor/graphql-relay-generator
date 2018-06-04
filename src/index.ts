@@ -1,10 +1,10 @@
-export { default as rootConnection } from "./rootConnection";
+export { default as queryNode } from "./queryNode";
 
-export { default as rootNode } from "./rootNode";
+export { default as queryNodeById } from "./queryNodeById";
 
-export { default as nodeFactory } from "./nodeFactory";
+export { default as node } from "./node";
 
-export { default as nodeConnetion } from "./nodeConnection";
+export { default as nodeConnection } from "./nodeConnection";
 
 export { default as mutation } from "./mutation";
 

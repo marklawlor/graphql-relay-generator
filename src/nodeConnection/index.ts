@@ -1,11 +1,6 @@
-import { GraphQLFieldConfig, GraphQLFieldResolver, GraphQLInt } from "graphql";
+import { GraphQLFieldConfig, GraphQLFieldResolver } from "graphql";
 
-import {
-  connectionArgs,
-  ConnectionConfig,
-  connectionFromArray,
-  offsetToCursor
-} from "graphql-relay";
+import { connectionArgs, ConnectionConfig } from "graphql-relay";
 
 import { HasConnection, Typed } from "../types";
 
@@ -13,52 +8,33 @@ import defaultResolver from "./defaultResolver";
 import resolveName from "./resolveName";
 import getConnectionType from "./connectionType";
 
-export interface ConnectionFactoryOptions<TProp extends string>
+export interface NodeConnectionOptions<TProp extends string | void>
   extends ConnectionConfig {
   name?: string;
-  prop: TProp;
+  prop?: TProp;
   resolver?: GraphQLFieldResolver<any, any>;
 }
 
-const connectionFactory = <TProp extends string, TFields>(
-  config: ConnectionFactoryOptions<TProp>
-): Typed<HasConnection<TProp, TFields>> & GraphQLFieldConfig<any, any> => {
+function NodeConnection<TFields>(
+  config: NodeConnectionOptions<void>
+): Typed<HasConnection<TFields, void>> & GraphQLFieldConfig<any, any>;
+function NodeConnection<TFields, TEdgeProp extends string>(
+  config: NodeConnectionOptions<TEdgeProp>
+): Typed<HasConnection<TFields, TEdgeProp>> & GraphQLFieldConfig<any, any>;
+function NodeConnection(config: any) {
   let { name, nodeType, prop, resolver } = config;
 
   name = resolveName(nodeType, name);
 
-  const connectionResolver = resolver || defaultResolver(prop);
+  const resolve = resolver || defaultResolver(prop);
 
   const connectionType = getConnectionType({ name, prop, nodeType });
 
   return {
-    args: {
-      ...(connectionArgs as any),
-      limit: {
-        type: GraphQLInt
-      },
-      offset: {
-        type: GraphQLInt
-      }
-    },
-    resolve: async (source, args, context, info) => {
-      if (args.offset) {
-        args.after = offsetToCursor(args.offset);
-      }
-
-      if (args.limit) {
-        args.first = args.limit;
-      }
-
-      const array = await connectionResolver(source, args, context, info);
-
-      return {
-        ...connectionFromArray(array, args),
-        totalCount: array.length
-      };
-    },
+    args: connectionArgs,
+    resolve,
     type: connectionType as any
   };
-};
+}
 
-export default connectionFactory;
+export default NodeConnection;

@@ -28,10 +28,9 @@ export interface Connection<T> {
 }
 
 // prettier-ignore
-export type HasConnection<K extends string, T> =
-  Record<K, T> &
-  Typed<T> &
-  Connection<T>;
+export type HasConnection<T, K extends string | void> = K extends string
+  ? Record<K, T> & Typed<T> & Connection<T>
+  : Typed<T> & Connection<T>
 
 // prettier-ignore
 export type InputFieldConfig<T, TSource, TContext> =

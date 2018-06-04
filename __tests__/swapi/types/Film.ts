@@ -1,6 +1,6 @@
 import { GraphQLString } from "graphql";
 
-import { nodeFactory, InferType } from "../../../src";
+import { node, InferType } from "../../../src";
 
 import StarshipConnection from "./FilmStarshipConnection";
 
@@ -12,7 +12,7 @@ interface Connections {
   StarshipConnection: InferType<typeof StarshipConnection>;
 }
 
-export default nodeFactory<Fields, Connections>({
+export default node<Fields, Connections>({
   name: "Film",
   fields: {
     title: {

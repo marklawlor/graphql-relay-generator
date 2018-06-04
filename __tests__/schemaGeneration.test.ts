@@ -6,7 +6,6 @@ describe("schemaGeneration", () => {
   test("query - basic", () => {
     const query = `{
       allFilms {
-        totalCount
         films {
           title
           StarshipConnection {
@@ -21,7 +20,6 @@ describe("schemaGeneration", () => {
     return expect(graphql(schema, query)).resolves.toEqual({
       data: {
         allFilms: {
-          totalCount: 7,
           films: [
             {
               title: "A New Hope",

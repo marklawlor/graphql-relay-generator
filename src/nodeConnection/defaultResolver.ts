@@ -1,10 +1,13 @@
 import { GraphQLFieldResolver } from "graphql";
 
-const defaultResolver = (
-  alias: string
-): GraphQLFieldResolver<any, any> => source => {
-  if (source) {
-    return source[alias];
+import { connectionFromArray } from "graphql-relay";
+
+const defaultResolver = (alias: string): GraphQLFieldResolver<any, any> => (
+  source,
+  args
+) => {
+  if (source && source[alias]) {
+    return connectionFromArray(source[alias], args);
   }
 };
 

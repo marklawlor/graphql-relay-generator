@@ -6,7 +6,7 @@ import {
 
 import { TypedFieldConfig, OutputFieldConfigMap, Typed } from "./types";
 
-export interface NodeFactoryConfig<TFields, TConnections, TSource, TContext>
+export interface NodeConfig<TFields, TConnections, TSource, TContext>
   extends GraphQLObjectTypeConfig<TSource, TContext> {
   fields: OutputFieldConfigMap<TFields, TSource, TContext>;
   connections?: () => TypedFieldConfig<TConnections>;
@@ -16,8 +16,8 @@ const defaultConfig = {
   connections: () => ({})
 };
 
-const nodeFactory = <TFields, TConnections = {}, TSource = any, TContext = any>(
-  config: NodeFactoryConfig<TFields, TConnections, TSource, TContext>
+const node = <TFields, TConnections = {}, TSource = any, TContext = any>(
+  config: NodeConfig<TFields, TConnections, TSource, TContext>
 ): GraphQLObjectType & Typed<TFields & TConnections> => {
   let { connections, ...typeConfig } = { ...defaultConfig, ...config };
 
@@ -39,4 +39,4 @@ const nodeFactory = <TFields, TConnections = {}, TSource = any, TContext = any>(
     })
   });
 };
-export default nodeFactory;
+export default node;
